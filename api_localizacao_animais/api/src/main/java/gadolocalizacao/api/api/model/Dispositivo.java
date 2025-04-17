@@ -17,7 +17,7 @@ public class Dispositivo extends BaseEntity {
 
     private String identificador;
 
-    private String tipo; // ex: "GPS", "Colar", "Sensor de Movimento"
+    private String tipo; // "GPS", "Colar", "Sensor de Movimento"
 
     private Boolean ativo;
 
