@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "Propriedade")
+@Table(name = "propriedades")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,6 +20,6 @@ public class Propriedade extends BaseEntity {
     private String nome;
     private String localizacao;
 
-    @OneToMany(mappedBy = "fazenda", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
     private List<Piquete> Piquete;
 }

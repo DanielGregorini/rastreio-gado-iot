@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "Piquetes=")
+@Table(name = "piquetes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +25,7 @@ public class Piquete extends BaseEntity {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "Propriedade_id")
+    @JoinColumn(name = "propriedade_id")
     private Propriedade propriedade;
 
     @OneToMany(mappedBy = "piquete", cascade = CascadeType.ALL)
