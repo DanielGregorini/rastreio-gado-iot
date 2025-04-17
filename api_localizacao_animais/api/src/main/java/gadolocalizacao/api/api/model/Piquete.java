@@ -29,6 +29,6 @@ public class Piquete extends BaseEntity {
     private Propriedade propriedade;
 
     @OneToMany(mappedBy = "piquete", cascade = CascadeType.ALL)
-    private List<Animal> Animal;
+    private List<Animal> animal;
 
 }

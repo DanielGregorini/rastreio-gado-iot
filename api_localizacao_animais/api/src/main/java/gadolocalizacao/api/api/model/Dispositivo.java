@@ -23,5 +23,5 @@ public class Dispositivo extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "animal_id")
-    private Animal Animal;
+    private Animal animal;
 }

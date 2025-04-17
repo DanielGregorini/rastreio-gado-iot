@@ -21,5 +21,5 @@ public class Propriedade extends BaseEntity {
     private String localizacao;
 
     @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
-    private List<Piquete> Piquete;
+    private List<Piquete> piquete;
 }
