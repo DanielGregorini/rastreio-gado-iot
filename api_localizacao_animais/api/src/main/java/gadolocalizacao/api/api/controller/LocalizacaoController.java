@@ -17,13 +17,11 @@ public class LocalizacaoController {
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
 
-    // GET paginado
     @GetMapping
     public Page<Localizacao> listar(Pageable pageable) {
         return localizacaoRepository.findAll(pageable);
     }
 
-    // GET por ID
     @GetMapping("/{id}")
     public ResponseEntity<Localizacao> obterPorId(@PathVariable Long id) {
         return localizacaoRepository.findById(id)
@@ -31,14 +29,12 @@ public class LocalizacaoController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // POST - criar nova
     @PostMapping
     public ResponseEntity<Localizacao> criar(@RequestBody @Valid Localizacao localizacao) {
         Localizacao salva = localizacaoRepository.save(localizacao);
         return ResponseEntity.status(HttpStatus.CREATED).body(salva);
     }
 
-    // PUT - atualizar existente
     @PutMapping("/{id}")
     public ResponseEntity<Localizacao> atualizar(@PathVariable Long id, @RequestBody @Valid Localizacao localizacaoAtualizada) {
         return localizacaoRepository.findById(id).map(localizacao -> {
@@ -50,7 +46,6 @@ public class LocalizacaoController {
         }).orElse(ResponseEntity.notFound().build());
     }
 
-    // DELETE - remover por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (!localizacaoRepository.existsById(id)) {
@@ -61,3 +56,4 @@ public class LocalizacaoController {
         return ResponseEntity.noContent().build();
     }
 }
+ 

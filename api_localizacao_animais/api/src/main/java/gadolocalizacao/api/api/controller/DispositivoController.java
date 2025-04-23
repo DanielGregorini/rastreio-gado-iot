@@ -17,13 +17,11 @@ public class DispositivoController {
     @Autowired
     private DispositivoRepository dispositivoRepository;
 
-    // GET - Obter todos paginado
     @GetMapping
     public Page<Dispositivo> listar(Pageable pageable) {
         return dispositivoRepository.findAll(pageable);
     }
 
-    // GET - Obter por ID
     @GetMapping("/{id}")
     public ResponseEntity<Dispositivo> obterPorId(@PathVariable Long id) {
         return dispositivoRepository.findById(id)
@@ -31,14 +29,12 @@ public class DispositivoController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // POST - Criar novo
     @PostMapping
     public ResponseEntity<Dispositivo> criar(@RequestBody @Valid Dispositivo dispositivo) {
         Dispositivo salvo = dispositivoRepository.save(dispositivo);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
-    // PUT - Atualizar existente
     @PutMapping("/{id}")
     public ResponseEntity<Dispositivo> atualizar(@PathVariable Long id, @RequestBody @Valid Dispositivo dispositivoAtualizado) {
         return dispositivoRepository.findById(id).map(dispositivo -> {
@@ -51,7 +47,6 @@ public class DispositivoController {
         }).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    // DELETE - Remover existente
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         return dispositivoRepository.findById(id)
