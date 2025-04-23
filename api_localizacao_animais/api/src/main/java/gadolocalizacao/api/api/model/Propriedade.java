@@ -1,20 +1,10 @@
 package gadolocalizacao.api.api.model;
 
+import jakarta.persistence.*;
 import java.util.List;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "propriedades")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Propriedade extends BaseEntity {
 
     private String nome;
@@ -22,4 +12,37 @@ public class Propriedade extends BaseEntity {
 
     @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
     private List<Piquete> piquete;
+
+    public Propriedade() {
+    }
+
+    public Propriedade(String nome, String localizacao, List<Piquete> piquete) {
+        this.nome = nome;
+        this.localizacao = localizacao;
+        this.piquete = piquete;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public List<Piquete> getPiquete() {
+        return piquete;
+    }
+
+    public void setPiquete(List<Piquete> piquete) {
+        this.piquete = piquete;
+    }
 }
