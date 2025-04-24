@@ -20,6 +20,6 @@ public class Propriedade extends BaseEntity {
     private String nome;
     private String localizacao;
 
-    @OneToMany(mappedBy = "fazenda", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Propriedade", cascade = CascadeType.ALL)
     private List<Piquete> Piquete;
 }
