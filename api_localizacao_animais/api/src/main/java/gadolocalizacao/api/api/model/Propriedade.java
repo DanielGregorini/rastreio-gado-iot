@@ -10,11 +10,8 @@ public class Propriedade extends BaseEntity {
     private String nome;
     private String localizacao;
 
+    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
 
-    @OneToMany(mappedBy = "Propriedade", cascade = CascadeType.ALL)
-    private List<Piquete> Piquete;
-
-    @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL)
     private List<Piquete> piquete;
 
     public Propriedade() {

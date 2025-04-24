@@ -1,14 +1,19 @@
 package gadolocalizacao.api.api.controller;
 
+import org.springframework.beans.BeanUtils;
+
 import gadolocalizacao.api.api.model.Propriedade;
 import gadolocalizacao.api.api.repository.PropriedadeRepository;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import gadolocalizacao.api.api.dto.PropriedadeDTO;
 
 @RestController
 @RequestMapping("/propriedades")
@@ -30,9 +35,10 @@ public class PropriedadeController {
     }
 
     @PostMapping
-    public ResponseEntity<Propriedade> criar(@RequestBody @Valid Propriedade propriedade) {
-        Propriedade salva = propriedadeRepository.save(propriedade);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salva);
+    public ResponseEntity<Propriedade> criar(@RequestBody @Valid PropriedadeDTO dto) {
+        Propriedade propriedade = new Propriedade();
+        BeanUtils.copyProperties(dto, propriedade, "id");
+        return ResponseEntity.status(HttpStatus.CREATED).body(propriedadeRepository.save(dto.toPropriedade()));
     }
 
     @PutMapping("/{id}")
