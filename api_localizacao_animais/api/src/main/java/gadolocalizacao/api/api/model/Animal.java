@@ -1,26 +1,41 @@
 package gadolocalizacao.api.api.model;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "animais")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Animal extends BaseEntity {
-    
+
     private String identificador;
 
     @ManyToOne
     @JoinColumn(name = "piquete_id")
     private Piquete piquete;
 
+    public Animal() {
+    }
+
+    public Animal(String identificador, Piquete piquete) {
+        this.identificador = identificador;
+        this.piquete = piquete;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public Piquete getPiquete() {
+        return piquete;
+    }
+
+    public void setPiquete(Piquete piquete) {
+        this.piquete = piquete;
+    }
 }

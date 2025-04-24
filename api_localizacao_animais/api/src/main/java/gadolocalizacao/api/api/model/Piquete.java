@@ -1,25 +1,10 @@
 package gadolocalizacao.api.api.model;
 
+import jakarta.persistence.*;
 import java.util.List;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "piquetes")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class Piquete extends BaseEntity {
 
     private String nome;
@@ -31,4 +16,36 @@ public class Piquete extends BaseEntity {
     @OneToMany(mappedBy = "piquete", cascade = CascadeType.ALL)
     private List<Animal> animal;
 
+    public Piquete() {
+    }
+
+    public Piquete(String nome, Propriedade propriedade, List<Animal> animal) {
+        this.nome = nome;
+        this.propriedade = propriedade;
+        this.animal = animal;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Propriedade getPropriedade() {
+        return propriedade;
+    }
+
+    public void setPropriedade(Propriedade propriedade) {
+        this.propriedade = propriedade;
+    }
+
+    public List<Animal> getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(List<Animal> animal) {
+        this.animal = animal;
+    }
 }
