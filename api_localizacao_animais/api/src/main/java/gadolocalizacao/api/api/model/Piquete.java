@@ -1,17 +1,22 @@
 package gadolocalizacao.api.api.model;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "piquetes")
 public class Piquete extends BaseEntity {
-
-    private String nome;
 
     @ManyToOne
     @JoinColumn(name = "propriedade_id")
     private Propriedade propriedade;
+
+    private String nome;
 
     @OneToMany(mappedBy = "piquete", cascade = CascadeType.ALL)
     private List<Animal> animal;
@@ -37,6 +42,7 @@ public class Piquete extends BaseEntity {
         return propriedade;
     }
 
+
     public void setPropriedade(Propriedade propriedade) {
         this.propriedade = propriedade;
     }
@@ -48,4 +54,5 @@ public class Piquete extends BaseEntity {
     public void setAnimal(List<Animal> animal) {
         this.animal = animal;
     }
+
 }

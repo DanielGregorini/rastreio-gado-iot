@@ -28,4 +28,8 @@ public abstract class BaseEntity {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
+
+    public Long getId() {
+        return id;
+    }
 }

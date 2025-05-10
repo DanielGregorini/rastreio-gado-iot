@@ -25,7 +25,7 @@ public class AnimalDTO {
         animal.setIdentificador(this.identificador);
 
         Piquete piquete = new Piquete();
-        piquete.setId(this.piqueteId);
+        //piquete.setId(this.piqueteId);
         animal.setPiquete(piquete);
 
         return animal;
@@ -36,5 +36,13 @@ public class AnimalDTO {
         dto.setIdentificador(animal.getIdentificador());
         dto.setPiqueteId(animal.getPiquete().getId());
         return dto;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public void setPiqueteId(Long piqueteId) {
+        this.piqueteId = piqueteId;
     }
 }
