@@ -1,0 +1,45 @@
+#################################################################
+# Listar todos os usuários
+GET http://localhost:8080/users
+Accept: application/json
+
+#################################################################
+# Obter usuário por ID
+GET http://localhost:8080/users/1
+Accept: application/json
+
+#################################################################
+# Criar novo usuário
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "user1",
+  "role": "ROLE_USER"
+}
+
+#################################################################
+# Fazer login (recebe JWT no cookie e no corpo)
+POST http://localhost:8080/users/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "senh1"
+}
+
+#################################################################
+# Atualizar usuário
+PUT http://localhost:8080/users/1
+Content-Type: application/json
+
+{
+  "username": "user1_updated",
+  "password": "user1_updated",
+  "role": "ROLE_ADMIN"
+}
+
+#################################################################
+# Deletar usuário
+DELETE http://localhost:8080/users/1
