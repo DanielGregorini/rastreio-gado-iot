@@ -1,11 +1,11 @@
 #################################################################
 # Listar todos os usuários
-GET http://localhost:8080/users
+GET http://localhost:8080/animais
 Accept: application/json
 
 #################################################################
 # Obter usuário por ID
-GET http://localhost:8080/users/1
+GET http://localhost:8080/users
 Accept: application/json
 
 #################################################################
@@ -18,6 +18,16 @@ Content-Type: application/json
   "password": "user1",
   "role": "ROLE_USER"
 }
+##############
+# logi novo usuário
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "senha"
+}
+
 
 #################################################################
 # Fazer login (recebe JWT no cookie e no corpo)
@@ -26,7 +36,7 @@ Content-Type: application/json
 
 {
   "username": "user1",
-  "password": "senh1"
+  "password": "senha1"
 }
 
 #################################################################
