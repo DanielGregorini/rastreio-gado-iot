@@ -24,9 +24,27 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "username": "user1",
-  "password": "senha"
+  "username": "user3",
+  "password": "SenhaNovaForte123@"
 }
+
+#################################################################
+# Atualizar senha no Cognito (trocar senha temporária → definitiva)
+#################################################################
+# Responder ao desafio NEW_PASSWORD_REQUIRED (incluindo o atributo obrigatório)
+POST http://localhost:8080/auth/new-password
+Content-Type: application/json
+
+{
+  "username": "user3",
+  "newPassword": "SenhaDefinitiva@123",
+  "session": "AYABeBJYIabaz_nf6b8nBIcOjZgAHQABAAdTZXJ2aWNlABBDb2duaXRvVXNlclBvb2xzAAEAB2F3cy1rbXMAS2Fybjphd3M6a21zOnVzLWVhc3QtMTo3NDU2MjM0Njc1NTU6a2V5L2IxNTVhZmNhLWJmMjktNGVlZC1hZmQ4LWE5ZTA5MzY1M2RiZQC4AQIBAHhR9E4zNbI1ofi3Y01_Ljgh2wK-ZaC__bKufjbgmejy4gHgQEhHAMJKoPbNljleIhGKAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMAuLJ30uE7odNM2xfAgEQgDsV3Nam20ux1I7iS7TGhlBMTAHaY65lsCl2r6TGBaRIF7Xs4EzW_EU1f7vyey6Ok-Qvp5mJduchSX6jgAIAAAAADAAAEAAAAAAAAAAAAAAAAAAQVyG9HyDkVxDQ3nNAPZWF_____wAAAAEAAAAAAAAAAAAAAAEAAADZ--9FO--5d1YXhLQGdVBjz3SKHwKdD6znVea4GJD28tsllY-sQUN8y9CL1LEMqNVfNlL-M76VReQvIgRKdTBX9IHezGy5trlo2ymcRI8NtDuuJp7WBnsEjSJA9MdqewaInt4vbAUSQPcSlXoa5yOFZBQvk_qs9a0K1i3RR17D8d9fyzvPrADsb9ZWDdRimVEHEKSX1QrLOHPAIxv648r1Qgwn1RGEj8qr7ba3-BG7D69vLhN80uPrKqJAvDaPYK-b8PTyd4j09Q33ZNCzEwzKf5Ypgka_3kLt3zM1COunz-SHKFWXcYun1KQ",
+  "userAttributes": {
+    "nickname": "user3"
+  }
+}
+
+
 
 
 #################################################################

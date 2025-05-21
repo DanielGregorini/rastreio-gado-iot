@@ -17,6 +17,10 @@ public class UserDTO {
     private String username;
 
     @NotBlank
+    @Size(min = 3, max = 300)
+    private String email;
+
+    @NotBlank
     @Size(min = 3, max = 100)
     private String password;
 
@@ -27,6 +31,7 @@ public class UserDTO {
     public User toUser() {
         User user = new User();
         user.setUsername(this.username);
+        user.setEmail(this.email);
         user.setPassword(this.password);
         user.setRole(this.role);
         return user;

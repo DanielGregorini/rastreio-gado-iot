@@ -62,7 +62,9 @@ public class UserController {
 
         User user = opt.get();
         user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
         user.setPassword(dto.getPassword());
+        
         user.setRole(dto.getRole());
         User atualizado = userRepository.save(user);
         return ResponseEntity.ok(atualizado);
