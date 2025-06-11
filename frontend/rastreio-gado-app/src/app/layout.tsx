@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
+import Navbar from "@/components/navbar"; 
+import Footer from "@/components/footer";
+import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Gado Rastreio App",
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

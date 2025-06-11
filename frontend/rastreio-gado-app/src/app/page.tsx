@@ -1,10 +1,9 @@
-import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="">
+    <main className="min-h-screen">
       <h1>
-        oi william
+        oiee que odeioooooo ai veio oq eu falar
       </h1>
     </main> 
   );
