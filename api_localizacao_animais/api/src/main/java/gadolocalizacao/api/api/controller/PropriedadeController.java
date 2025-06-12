@@ -28,6 +28,7 @@ public class PropriedadeController {
 
     @GetMapping
     public Page<Propriedade> listar(Pageable pageable) {
+        
         return propriedadeRepository.findAll(pageable);
     }
 

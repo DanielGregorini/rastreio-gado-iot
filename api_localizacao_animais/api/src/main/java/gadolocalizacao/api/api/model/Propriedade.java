@@ -3,6 +3,8 @@ package gadolocalizacao.api.api.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "propriedades")
 public class Propriedade extends BaseEntity {
@@ -11,6 +13,8 @@ public class Propriedade extends BaseEntity {
     private String localizacao;
 
     @OneToMany(mappedBy = "propriedade", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+    
+    @JsonManagedReference
     private List<Piquete> piquete;
 
     public Propriedade() {

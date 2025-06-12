@@ -18,29 +18,12 @@ import gadolocalizacao.api.api.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableMethodSecurity
-    public class SecurityConfig {
+public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-          .csrf(AbstractHttpConfigurer::disable)
-          .sessionManagement(m ->
-             m.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-          )
-          // libera absolutamente TUDO
-          .authorizeHttpRequests(auth -> auth
-              .anyRequest().permitAll()
-          )
-          .httpBasic(AbstractHttpConfigurer::disable)
-          .formLogin(AbstractHttpConfigurer::disable);
-
-        return http.build();
     }
 
     /* 
@@ -77,11 +60,10 @@ import gadolocalizacao.api.api.security.JwtAuthenticationFilter;
 
         return http.build();
     }
-        */
-
+     */
     @Bean
     public AuthenticationManager authenticationManager(
-         AuthenticationConfiguration config
+            AuthenticationConfiguration config
     ) throws Exception {
         return config.getAuthenticationManager();
     }
@@ -90,4 +72,20 @@ import gadolocalizacao.api.api.security.JwtAuthenticationFilter;
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .cors().and()
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(m -> m.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .httpBasic(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable);
+
+        return http.build();
+    }
+
 }

@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Getter
 @Setter
@@ -14,6 +16,8 @@ public class Piquete extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "propriedade_id")
+    
+    @JsonBackReference
     private Propriedade propriedade;
 
     private String nome;

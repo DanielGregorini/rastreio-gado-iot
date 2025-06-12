@@ -25,8 +25,8 @@ function Navbar() {
           <a href="/users" className="hover:text-gray-300">Users</a>
         </div>
 
-        <div className="w-2/12">
-
+        <div className="w-2/12 flex justify-end">
+          <a href="/login" className="hover:text-gray-300">Login</a>
         </div>
       </div>
     </nav>

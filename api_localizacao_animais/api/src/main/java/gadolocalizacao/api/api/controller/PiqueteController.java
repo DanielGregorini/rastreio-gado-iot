@@ -27,8 +27,9 @@ public class PiqueteController {
     private PiqueteRepository piqueteRepository;
 
     @GetMapping
-    public Page<Piquete> listar(Pageable pageable) {
-        return piqueteRepository.findAll(pageable);
+    public Page<PiqueteDTO> listar(Pageable pageable) {
+        return piqueteRepository.findAll(pageable)
+                .map(PiqueteDTO::fromPiquete);
     }
 
     @GetMapping("/{id}")
