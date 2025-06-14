@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import gadolocalizacao.api.api.model.Dispositivo;
+import gadolocalizacao.api.api.model.Localizacao;
 
 @Getter
 @Setter
@@ -20,27 +22,31 @@ public class LocalizacaoDTO {
 
     @NotNull(message = "O dispositivoId é obrigatório")
     private Long dispositivoId;
-   
-    public gadolocalizacao.api.api.model.Localizacao toLocalizacao() {
-        var loc = new gadolocalizacao.api.api.model.Localizacao();
+
+    public Localizacao toLocalizacao() {
+        Localizacao loc = new Localizacao();
         loc.setLatitude(this.latitude);
         loc.setLongitude(this.longitude);
         loc.setDataHora(this.dataHora);
-        // aqui só “attach” via id, resolve o relacionamento no Service/Mapper
-        var disp = new gadolocalizacao.api.api.model.Dispositivo();
+
+        // Criação apenas com o ID (sem buscar do banco)
+        Dispositivo disp = new Dispositivo();
         disp.setId(this.dispositivoId);
         loc.setDispositivo(disp);
+
         return loc;
     }
 
-    public static LocalizacaoDTO fromLocalizacao(gadolocalizacao.api.api.model.Localizacao ent) {
-        var dto = new LocalizacaoDTO();
-        dto.setLatitude(ent.getLatitude());
-        dto.setLongitude(ent.getLongitude());
-        dto.setDataHora(ent.getDataHora());
-        if (ent.getDispositivo() != null) {
-            dto.setDispositivoId(ent.getDispositivo().getId());
+    public static LocalizacaoDTO fromEntity(Localizacao loc) {
+        LocalizacaoDTO dto = new LocalizacaoDTO();
+        dto.setLatitude(loc.getLatitude());
+        dto.setLongitude(loc.getLongitude());
+        dto.setDataHora(loc.getDataHora());
+
+        if (loc.getDispositivo() != null && loc.getDispositivo().getId() != null) {
+            dto.setDispositivoId(loc.getDispositivo().getId());
         }
+
         return dto;
     }
 }

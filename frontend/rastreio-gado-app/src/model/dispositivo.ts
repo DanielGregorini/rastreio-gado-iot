@@ -1,6 +1,6 @@
 import Animal from "./animal";
 
-export interface Dispositivo {
+export default interface Dispositivo {
   id: number;
   identificador: string;
   tipo: string;

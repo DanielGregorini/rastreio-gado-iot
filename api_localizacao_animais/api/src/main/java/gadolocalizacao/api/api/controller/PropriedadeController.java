@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,7 @@ public class PropriedadeController {
 
     @GetMapping
     public Page<Propriedade> listar(Pageable pageable) {
-        
+
         return propriedadeRepository.findAll(pageable);
     }
 
@@ -38,9 +39,10 @@ public class PropriedadeController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Propriedade> criar(@RequestBody @Valid PropriedadeDTO propriedade) {
-        Propriedade salva = propriedadeRepository.save(propriedade.toPropriedade());
+        Propriedade salva = propriedadeRepository.save(propriedade.toEntity());
         return ResponseEntity.status(HttpStatus.CREATED).body(salva);
     }
 

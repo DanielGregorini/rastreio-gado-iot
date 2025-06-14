@@ -7,6 +7,7 @@ import lombok.Setter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -22,8 +23,10 @@ public class Piquete extends BaseEntity {
 
     private String nome;
 
-    @OneToMany(mappedBy = "piquete", cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToMany(mappedBy = "piquete", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Animal> animal;
+
 
     public Piquete() {
     }

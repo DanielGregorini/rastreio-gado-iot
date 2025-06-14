@@ -23,19 +23,17 @@ public class PropriedadeDTO {
     @Size(min = 3, max = 100)
     private String localizacao;
     
-    @JsonManagedReference
-    private List<PiqueteDTO> piquetes;
 
     public static PropriedadeDTO fromEntity(Propriedade propriedade) {
         PropriedadeDTO dto = new PropriedadeDTO();
         dto.setNome(propriedade.getNome());
         dto.setLocalizacao(propriedade.getLocalizacao());
-        if (propriedade.getPiquete() != null) {
-            dto.setPiquetes(propriedade.getPiquete()
-                .stream()
-                .map(PiqueteDTO::fromEntity)
-                .collect(Collectors.toList()));
-        }
+        //if (propriedade.getPiquete() != null) {
+           // dto.setPiquetes(propriedade.getPiquete()
+           //     .stream()
+            //    .map(PiqueteDTO::fromEntity)
+            //    .collect(Collectors.toList()));
+       // }
         return dto;
     }
 
@@ -46,4 +44,14 @@ public class PropriedadeDTO {
         // piquetes não precisam ser setados ao salvar uma propriedade nova
         return propriedade;
     }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+
 }

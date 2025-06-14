@@ -28,26 +28,28 @@ public class DispositivoDTO {
     private Long animalId;
 
     public Dispositivo toDispositivo() {
-        Dispositivo disp = new Dispositivo();
-        disp.setIdentificador(this.identificador);
-        disp.setTipo(this.tipo);
-        disp.setAtivo(this.ativo);
+        Dispositivo dispositivo = new Dispositivo();
+        dispositivo.setIdentificador(this.identificador);
+        dispositivo.setTipo(this.tipo);
+        dispositivo.setAtivo(this.ativo);
 
         Animal animal = new Animal();
-        animal.setId(this.animalId);
-        disp.setAnimal(animal);
+        animal.setId(this.animalId); // necessário para persistência correta
+        dispositivo.setAnimal(animal);
 
-        return disp;
+        return dispositivo;
     }
 
-    public static DispositivoDTO fromEntity(Dispositivo disp) {
+    public static DispositivoDTO fromEntity(Dispositivo dispositivo) {
         DispositivoDTO dto = new DispositivoDTO();
-        dto.setIdentificador(disp.getIdentificador());
-        dto.setTipo(disp.getTipo());
-        dto.setAtivo(disp.getAtivo());
-        if (disp.getAnimal() != null) {
-            dto.setAnimalId(disp.getAnimal().getId());
+        dto.setIdentificador(dispositivo.getIdentificador());
+        dto.setTipo(dispositivo.getTipo());
+        dto.setAtivo(dispositivo.getAtivo());
+
+        if (dispositivo.getAnimal() != null && dispositivo.getAnimal().getId() != null) {
+            dto.setAnimalId(dispositivo.getAnimal().getId());
         }
+
         return dto;
     }
 }

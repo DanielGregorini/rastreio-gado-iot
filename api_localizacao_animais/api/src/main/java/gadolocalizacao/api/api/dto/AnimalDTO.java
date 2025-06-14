@@ -25,7 +25,7 @@ public class AnimalDTO {
         animal.setIdentificador(this.identificador);
 
         Piquete piquete = new Piquete();
-        //piquete.setId(this.piqueteId);
+        piquete.setId(this.piqueteId); // agora sim, necessário para persistência correta
         animal.setPiquete(piquete);
 
         return animal;
@@ -34,15 +34,11 @@ public class AnimalDTO {
     public static AnimalDTO fromEntity(Animal animal) {
         AnimalDTO dto = new AnimalDTO();
         dto.setIdentificador(animal.getIdentificador());
-        dto.setPiqueteId(animal.getPiquete().getId());
+
+        if (animal.getPiquete() != null && animal.getPiquete().getId() != null) {
+            dto.setPiqueteId(animal.getPiquete().getId());
+        }
+
         return dto;
-    }
-
-    public void setIdentificador(String identificador) {
-        this.identificador = identificador;
-    }
-
-    public void setPiqueteId(Long piqueteId) {
-        this.piqueteId = piqueteId;
     }
 }
