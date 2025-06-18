@@ -109,10 +109,10 @@ export default function UserPage({
             <strong>ID:</strong> {user.id}
           </p>
           <p>
-            <strong>Criado em:</strong> {user.createdAt}
+            <strong>Criado em:</strong> {user.createdAt.toLocaleString()}
           </p>
           <p>
-            <strong>Atualizado em:</strong> {user.updatedAt}
+            <strong>Atualizado em:</strong> {user.updatedAt?.toLocaleString()}
           </p>
 
           {!editMode ? (
