@@ -1,0 +1,80 @@
+
+services:
+  db_postgres:
+    container_name: db_postgres
+    image: postgres:14-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: api_java_topicos
+      POSTGRES_USER: daniel1
+      POSTGRES_PASSWORD: daniel
+    volumes:
+      - api_java_topicos_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  mongo:
+    container_name: db_mongo
+    image: mongo:6.0
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: topicos
+      MONGO_INITDB_ROOT_USERNAME: topicos
+      MONGO_INITDB_ROOT_PASSWORD: topicos
+    volumes:
+      - topicos_data:/data/db
+    ports:
+      - "27017:27017"
+
+  api_java:
+    container_name: api_java-rest
+    build:
+      context: ./api_localizacao_animais/api
+      dockerfile: Dockerfile
+    image: api_localizacao_animais:latest
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db_postgres:5432/api_java_topicos
+      SPRING_DATASOURCE_USERNAME: daniel1
+      SPRING_DATASOURCE_PASSWORD: daniel
+      AWS_COGNITO_REGION: sa-east-1
+      AWS_COGNITO_URL: https://cognito-idp.us-east-1.amazonaws.com
+      AWS_COGNITO_USERPOOLID: us-east-1_uGtHHrb9L
+      AWS_COGNITO_CLIENTID: dhhbn4vmsq4r7s833398k8e6l
+      AWS_COGNITO_CLIENTSECRET: qtol077gb7ii5u9nid5bk35t7st2cb09dqquehvh4tq400ns25e
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    depends_on:
+      - db_postgres
+
+  api_graphql:
+    container_name: api-node-graphql
+    build:
+      context: ./api_cadastro/api-cadastro-graphql
+      dockerfile: Dockerfile
+    image: api-cadastro-graphql:latest
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./api_cadastro/api-cadastro-graphql/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend/rastreio-gado-app
+      dockerfile: Dockerfile
+    image: rastreio-frontend:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/rastreio-gado-app/.env
+    depends_on:
+      - api_java
+      - api_graphql
+
+volumes:
+  api_java_topicos_data:
+  topicos_data:

@@ -15,7 +15,6 @@ mutation {
 }
 
 
-
 query {
   users {
     id

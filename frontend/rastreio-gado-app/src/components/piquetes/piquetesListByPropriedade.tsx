@@ -15,7 +15,7 @@ export default function PiquetesListByPropriedade({ propriedade }: PiquetesListB
   async function fetchPiquetesByPropriedade(propriedadeId: number) {
     try {
       const response = await fetch(
-        `http://localhost:8080/propriedades/${propriedadeId}/piquetes?page=0&size=300`,
+        `${process.env.NEXT_PUBLIC_URL_API}/propriedades/${propriedadeId}/piquetes?page=0&size=300`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },

@@ -53,11 +53,7 @@ export default function LocalizacoesPage() {
         )}
       </div>
 
-      {propriedadeSelecionada && (
-        <div className="flex flex-col items-center p-4">
-          Propriedade Selecionada: {propriedadeSelecionada.nome}
-        </div>
-      )}
+    
     </main>
   );
 }

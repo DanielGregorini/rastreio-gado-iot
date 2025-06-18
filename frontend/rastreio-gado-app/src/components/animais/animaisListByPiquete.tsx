@@ -17,7 +17,7 @@ export default function AnimaisListByPiquete({ piquete }: AnimaisListByPiquetePr
       setLoading(true)
       try {
         const response = await fetch(
-          `http://localhost:8080/piquetes/${piquete.id}/animais`,
+          `${process.env.NEXT_PUBLIC_URL_API}/piquetes/${piquete.id}/animais`,
           {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' },
