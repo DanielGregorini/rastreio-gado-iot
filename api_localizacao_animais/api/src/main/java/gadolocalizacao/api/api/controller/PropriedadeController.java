@@ -1,5 +1,7 @@
 package gadolocalizacao.api.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gadolocalizacao.api.api.dto.PropriedadeDTO;
+import gadolocalizacao.api.api.model.Piquete;
 import gadolocalizacao.api.api.model.Propriedade;
+import gadolocalizacao.api.api.repository.PiqueteRepository;
 import gadolocalizacao.api.api.repository.PropriedadeRepository;
 import jakarta.validation.Valid;
 
@@ -27,10 +31,22 @@ public class PropriedadeController {
     @Autowired
     private PropriedadeRepository propriedadeRepository;
 
+    @Autowired
+    private PiqueteRepository piqueteRepository;
+
     @GetMapping
     public Page<Propriedade> listar(Pageable pageable) {
 
         return propriedadeRepository.findAll(pageable);
+    }
+
+    @GetMapping("/{id}/piquetes")
+    public ResponseEntity<List<Piquete>> listarPiquetes(@PathVariable Long id) {
+        if (!propriedadeRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        List<Piquete> piquetes = piqueteRepository.findByPropriedadeId(id);
+        return ResponseEntity.ok(piquetes);
     }
 
     @GetMapping("/{id}")

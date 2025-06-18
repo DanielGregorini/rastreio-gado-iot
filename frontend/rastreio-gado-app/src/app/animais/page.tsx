@@ -23,17 +23,17 @@ export default function AnimaisPage() {
     async function fetchDados() {
       try {
         // Animais
-        const respAnimais = await fetch("http://localhost:8080/animais");
+        const respAnimais = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/animais?page=0&size=300`, );
         const dataAnimais = await respAnimais.json();
         setAnimais(dataAnimais.content || []);
 
         // Piquetes
-        const respPiquetes = await fetch("http://localhost:8080/piquetes");
+        const respPiquetes = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/piquetes?page=0&size=300`, );
         const dataPiquetes = await respPiquetes.json();
         setPiquetesUnicos(dataPiquetes.content || []);
 
         // Dispositivos
-        const respDisps = await fetch("http://localhost:8080/dispositivos");
+        const respDisps = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/dispositivos?page=0&size=300`, );
         const dataDisps = await respDisps.json();
         setDispositivos(dataDisps.content || []);
       } catch (error) {
@@ -46,7 +46,7 @@ export default function AnimaisPage() {
   // Excluir animal
   async function handleExcluirAnimal(id: number) {
     try {
-      const resp = await fetch(`http://localhost:8080/animais/${id}`, {
+      const resp = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/animais/${id}`, {
         method: "DELETE",
       });
       if (!resp.ok) throw new Error("Falha ao excluir animal");
@@ -65,7 +65,7 @@ export default function AnimaisPage() {
     const identificador = novoAnimalByPiquete[piqueteId];
     if (!identificador) return;
     try {
-      const resp = await fetch("http://localhost:8080/animais", {
+      const resp = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/animais`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ identificador, piqueteId }),
@@ -82,7 +82,7 @@ export default function AnimaisPage() {
   // Excluir dispositivo
   async function handleExcluirDispositivo(id: number) {
     try {
-      const resp = await fetch(`http://localhost:8080/dispositivos/${id}`, {
+      const resp = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/dispositivos/${id}`, {
         method: "DELETE",
       });
       if (!resp.ok) throw new Error("Falha ao excluir dispositivo");
@@ -96,7 +96,7 @@ export default function AnimaisPage() {
   async function handleCriarDispositivo(animalId: number) {
     try {
       const { identificador, tipo } = novoDispByAnimal[animalId] || {};
-      const resp = await fetch("http://localhost:8080/dispositivos", {
+      const resp = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/dispositivos`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ identificador, tipo, ativo: true, animalId }),

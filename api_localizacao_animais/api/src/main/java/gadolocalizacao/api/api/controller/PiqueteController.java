@@ -1,5 +1,7 @@
 package gadolocalizacao.api.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import gadolocalizacao.api.api.dto.PiqueteDTO;
+import gadolocalizacao.api.api.model.Animal;
 import gadolocalizacao.api.api.model.Piquete;
+import gadolocalizacao.api.api.repository.AnimalRepository;
 import gadolocalizacao.api.api.repository.PiqueteRepository;
 import jakarta.validation.Valid;
 
@@ -26,10 +30,25 @@ public class PiqueteController {
     @Autowired
     private PiqueteRepository piqueteRepository;
 
+
+    @Autowired
+    private AnimalRepository animalRepository;
+
+
     @GetMapping
     public Page<PiqueteDTO> listar(Pageable pageable) {
         return piqueteRepository.findAll(pageable)
                 .map(PiqueteDTO::fromPiquete);
+    }
+    @GetMapping("/{id}/animais")
+    public ResponseEntity<List<Animal>> listarAnimais(@PathVariable Long id) {
+        // 1. Verifica se o piquete existe
+        if (!piqueteRepository.existsById(id)) {
+            return ResponseEntity.notFound().build();
+        }
+        // 2. Busca todos os animais daquele piquete
+        List<Animal> animais = animalRepository.findByPiqueteId(id);
+        return ResponseEntity.ok(animais);
     }
 
     @GetMapping("/{id}")

@@ -21,7 +21,7 @@ export default function PiquetesPage() {
     setLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_URL_API}/piquetes`,
+        `${process.env.NEXT_PUBLIC_URL_API}/piquetes?page=0&size=300`,
         {
           method: "GET",
           headers: {

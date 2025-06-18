@@ -16,12 +16,12 @@ function Navbar() {
         </a>
         <div className="space-x-4 w-8/12 flex justify-center">
           <a href="/" className="hover:text-gray-300">Início</a>
-          <a href="/localizacoes" className="hover:text-gray-300">Localizações</a>
+          <a href="/dashboard" className="hover:text-gray-300">Dashboard</a>
           <a href="/animais" className="hover:text-gray-300">Animais</a>
           <a href="/piquetes" className="hover:text-gray-300">Piquetes</a>
         
           <a href="/propriedades" className="hover:text-gray-300">Propriedades</a>
-          <a href="/dispositivos" className="hover:text-gray-300">Dispositivos</a>
+    
           <a href="/users" className="hover:text-gray-300">Users</a>
         </div>
 

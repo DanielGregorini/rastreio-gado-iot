@@ -19,7 +19,7 @@ export default function PropriedadesPage() {
 
   async function fetchPropriedades() {
     try {
-      const response = await fetch("http://localhost:8080/propriedades", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/propriedades?page=0&size=300`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function PropriedadesPage() {
   async function handleCriarPropriedade(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/propriedades", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/propriedades`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
