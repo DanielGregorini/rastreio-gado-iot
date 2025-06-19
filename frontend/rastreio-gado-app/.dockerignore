@@ -19,8 +19,3 @@ Thumbs.db
 # Logs
 *.log
 
-
-# Archives (caso gere outros artefatos)
-*.jar
-*.war
-*.ear

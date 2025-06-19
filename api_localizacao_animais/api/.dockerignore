@@ -17,11 +17,7 @@ target/
 Thumbs.db
 
 # Logs
-*.log
-
-# Environment vars
-.env
-
+*.lo
 # Archives (caso gere outros artefatos)
 *.jar
 *.war
