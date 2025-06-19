@@ -3,7 +3,6 @@ services:
   db_postgres:
     container_name: db_postgres
     image: postgres:14-alpine
-    restart: always
     environment:
       POSTGRES_DB: api_java_topicos
       POSTGRES_USER: daniel1
@@ -16,7 +15,6 @@ services:
   mongo:
     container_name: db_mongo
     image: mongo:6.0
-    restart: always
     environment:
       MONGO_INITDB_DATABASE: topicos
       MONGO_INITDB_ROOT_USERNAME: topicos
@@ -33,7 +31,7 @@ services:
       dockerfile: Dockerfile
     image: api_localizacao_animais:latest
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db_postgres:5432/api_java_topicos
       SPRING_DATASOURCE_USERNAME: daniel1
