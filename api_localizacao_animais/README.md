@@ -38,3 +38,6 @@ VALUES (
     --env POSTGRES_DB=api_java_topicos \
     --publish 5432:5432 \
     postgres:14
+
+
+amora
