@@ -12,6 +12,16 @@ services:
     ports:
       - "5432:5432"
 
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+
   mongo:
     container_name: db_mongo
     image: mongo:6.0
@@ -25,7 +35,7 @@ services:
       - "27017:27017"
 
   api_java:
-    container_name: api_java-rest
+    container_name: api_java-rest 
     build:
       context: ./api_localizacao_animais/api
       dockerfile: Dockerfile
@@ -43,8 +53,10 @@ services:
       AWS_COGNITO_CLIENTSECRET: qtol077gb7ii5u9nid5bk35t7st2cb09dqquehvh4tq400ns25e
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      
     depends_on:
       - db_postgres
+      - rabbitmq
 
   api_graphql:
     container_name: api-node-graphql
@@ -57,7 +69,9 @@ services:
     env_file:
       - ./api_cadastro/api-cadastro-graphql/.env
     depends_on:
+      - api_java
       - mongo
+      - rabbitmq
 
   frontend:
     container_name: frontend

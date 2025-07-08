@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist",
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "lib": ["es6", "dom"],
-    "strict": true,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "es6"
+    "rootDir": "src",                 // Código-fonte TypeScript está em "src"
+    "outDir": "dist",                 // Código compilado vai para "dist"
+    "esModuleInterop": true,         // Permite importar módulos CommonJS com "import"
+    "resolveJsonModule": true,       // Permite importar arquivos .json como módulos
+    "lib": ["es6", "dom"],           // APIs ES6 + suporte ao DOM (se usar em navegador)
+    "strict": true,                  // Ativa todas as verificações estritas de tipo
+    "module": "NodeNext",            // Para melhor compatibilidade com ESModules (Node 18+)
+    "moduleResolution": "NodeNext",  // Resolve módulos conforme padrão atual do Node.js
+    "target": "es6"                  // Compila para ES6
   }
 }
