@@ -1,5 +1,3 @@
-// src/index.ts
-
 import 'dotenv/config';
 import express from 'express';
 import mongoose from 'mongoose';
@@ -43,7 +41,6 @@ async function connectRabbitMQ(retries = 10, delay = 3000): Promise<void> {
   }
 }
 
-// 📤 Envia mensagem para a fila
 export function sendToQueue(routingKey: string, message: object) {
   if (!channel) {
     console.error('❌ Canal RabbitMQ não inicializado.');
