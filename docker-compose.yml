@@ -46,11 +46,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db_postgres:5432/api_java_topicos
       SPRING_DATASOURCE_USERNAME: daniel1
       SPRING_DATASOURCE_PASSWORD: daniel
-      AWS_COGNITO_REGION: sa-east-1
-      AWS_COGNITO_URL: https://cognito-idp.us-east-1.amazonaws.com
-      AWS_COGNITO_USERPOOLID: us-east-1_uGtHHrb9L
-      AWS_COGNITO_CLIENTID: dhhbn4vmsq4r7s833398k8e6l
-      AWS_COGNITO_CLIENTSECRET: qtol077gb7ii5u9nid5bk35t7st2cb09dqquehvh4tq400ns25e
+      AWS_COGNITO_REGION:
+      AWS_COGNITO_URL:
+      AWS_COGNITO_USERPOOLID:
+      AWS_COGNITO_CLIENTID:
+      AWS_COGNITO_CLIENTSECRET:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       
